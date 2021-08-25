@@ -6,9 +6,20 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form"/>
       <field name="arch" type="xml">
-        <xpath expr="/form/sheet/group/group/field[@name='partner_shipping_id']" position="after">
-          <field name="test_bool" />
-        </xpath>
+        <data>
+            <notebook>
+                <page string="Tutorial Odoo - Herencia">
+                  <group>
+                    <field name="test_bool" />
+                    <field name="test_int" />
+                    <field name="test_float" />
+                    <field name="test_char" />
+                    <field name="test_text" />
+                    <field name="test_selection" />
+                  </group>
+                </page>
+            </notebook>
+        </data>
       </field>
     </record>
 
