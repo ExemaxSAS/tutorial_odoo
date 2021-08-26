@@ -17,6 +17,33 @@
                     <field name="test_text" />
                     <field name="test_selection" />
                   </group>
+                  <group>
+                    <field name="test_date" />
+                    <field name="test_html" />
+                    <field name="test_binary" />
+                  </group>
+                  <group>
+                    <field name="test_many2one" />
+
+                    <field name="test_one2many">
+                      <!--tree editable="bottom" edit="1">
+                        <field name="name" />
+                        <field name="price" />
+                      </tree-->
+
+                      <tree editable="bottom" edit="1">
+                        <field name="name" />
+                        <field name="price" />
+                      </tree>
+
+                      <form>
+                        <group>
+                          <field name="name" />
+                          <field name="price" />
+                        </group>
+                      </form>
+                    </field>
+                  </group>
                 </page>
             </notebook>
         </data>
