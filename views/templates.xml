@@ -1,22 +1,66 @@
 <odoo>
     <data>
-        <!-- <template id="listing"> -->
-        <!--   <ul> -->
-        <!--     <li t-foreach="objects" t-as="object"> -->
-        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
-        <!--         <t t-esc="object.display_name"/> -->
-        <!--       </a> -->
-        <!--     </li> -->
-        <!--   </ul> -->
-        <!-- </template> -->
-        <!-- <template id="object"> -->
-        <!--   <h1><t t-esc="object.display_name"/></h1> -->
-        <!--   <dl> -->
-        <!--     <t t-foreach="object._fields" t-as="field"> -->
-        <!--       <dt><t t-esc="field"/></dt> -->
-        <!--       <dd><t t-esc="object[field]"/></dd> -->
-        <!--     </t> -->
-        <!--   </dl> -->
-        <!-- </template> -->
+        
+        <template id="tutorial_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <h2>
+                        Tutorial Odoo - <span t-esc="o.name.replace('SO', 'ODOO')" />
+                    </h2>
+                    <t t-call="tutorial_odoo.tutorial_desc" />
+                    <br />
+
+                    <div t-if="o.pricelist_id.name == 'Tarifa pública'">
+                        <h3>Tarifa Pública ARS</h3>
+                    </div>
+                    <div t-if="o.pricelist_id.name != 'Tarifa pública'">
+                        <h3>Tarifa no Pública</h3>
+                    </div>
+
+                    <div t-foreach="o.order_line" t-as="line">
+                        <p t-esc="line.name" />
+                    </div>
+
+                    <t t-set="num" t-value="o.id + 1"/>
+                    <h4 t-esc="num" />
+
+                    <a t-att-href="'google.com/' + str(o.id)">Link</a>
+                </t>
+            </t>
+        </template>
+
+        <template id="tutorial_desc">
+            <t t-call="web.html_container">
+                <p>Esto es una descripción por fuera del template principal.</p>
+            </t>
+        </template>
+
+        <record id="paperformat_tutorial" model="report.paperformat">
+            <field name="name">Modelo Tutorial A4</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">95</field>
+        </record>
+
+        <report
+            id="action_report_tutorial"
+            model="sale.order"
+            string="Reporte Tutorial"
+            report_type="qweb-html"
+            paperformat="tutorial_odoo.paperformat_tutorial"
+            name="tutorial_odoo.tutorial_report"
+            file="tutorial_odoo.tutorial_report"
+        />
+
+
     </data>
 </odoo>

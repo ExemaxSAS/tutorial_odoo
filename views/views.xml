@@ -6,6 +6,22 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form"/>
       <field name="arch" type="xml">
+
+        <!-- Ejemplos para reemplazar o agregar Campos -->
+
+        <!-- Agregar campo Despues -->
+        <!--xpath expr="//field[@name='name']" position="after"></xpath-->
+        <!-- Agregar campo Antes -->
+        <!--xpath expr="//field[@name='name']" position="before"></xpath-->
+        <!-- Reemplazar Campo -->
+        <!--xpath expr="//field[@name='name']" position="replace"></xpath-->
+        <!-- Agregar campo dentro de Campo -->
+        <!--xpath expr="//field[@name='name']" position="inside"></xpath-->
+        <!-- Agregar o Reemplazar atributos del campo -->
+        <!--xpath expr="//field[@name='name']" position="attributes">
+          <attribute name="attrs">{}</attribute>
+        </xpath-->
+
         <data>
             <notebook>
                 <page string="Tutorial Odoo - Herencia">
@@ -26,6 +42,7 @@
                     <field name="test_many2one" />
 
                     <field name="test_one2many">
+                      <!-- Lista Editable desde la Lista -->
                       <!--tree editable="bottom" edit="1">
                         <field name="name" />
                         <field name="price" />
